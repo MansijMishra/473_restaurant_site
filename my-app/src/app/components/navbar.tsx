@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
-import { Bell, CircleUser } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import { Menu, X, Home, Utensils, Info, Mail } from "lucide-react";
 
 export default function Navbar({ type }: { type: string }) {
   const [dropdown, setDropdown] = useState(false);
@@ -19,51 +19,65 @@ export default function Navbar({ type }: { type: string }) {
     } else {
       document.removeEventListener("mouseup", handleClickOutside);
     }
-    
   }, [dropdown]);
 
   return (
-    <div>
-      {type == "guest" ? (
-        <div className="bg-darkBlue w-100vw text-lightBlue flex justify-between font-extrabold py-4 px-8">
-          <Link href="/" className="text-gold text-4xl">
-            Restaurant
+    <nav className="bg-teal-700 w-full text-lightBlue font-extrabold py-4 px-8 fixed top-0 left-0 z-50 shadow-md">
+
+      <div className="max-w-6xl mx-auto flex justify-between items-center">
+        
+        {/* Logo */}
+        <Link href="/home" className="text-amber-500 text-3xl md:text-4xl">
+          Khana | Indian Cuisine
+        </Link>
+
+        {/* Desktop Nav (Hidden on Mobile) */}
+        <ul className="hidden md:flex gap-6 text-lg items-center">
+          <Link href="/home" className="hover:text-amber-500 flex items-center gap-1">
+            <Home size={20} /> Home
           </Link>
-          <ul className="flex gap-6 text-2xl flex-row items-center">
-            <Link href="/about" className="hover:text-gold">
-              About
+          <Link href="/menu" className="hover:text-amber-500 flex items-center gap-1">
+            <Utensils size={20} /> Menu
+          </Link>
+          <Link href="/about" className="hover:text-amber-500 flex items-center gap-1">
+            <Info size={20} /> About
+          </Link>
+          <Link href="/contact" className="hover:text-amber-500 flex items-center gap-1">
+            <Mail size={20} /> Contact
+          </Link>
+        </ul>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden text-lightBlue"
+          onClick={() => setDropdown(!dropdown)}
+        >
+          {dropdown ? <X size={32} /> : <Menu size={32} />}
+        </button>
+      </div>
+
+      {/* Mobile Dropdown Menu */}
+      {dropdown && (
+        <div
+          ref={dropdownRef}
+          className="md:hidden absolute top-16 left-0 w-full bg-teal-800 text-lightBlue py-4"
+        >
+          <ul className="flex flex-col gap-4 items-center text-lg">
+            <Link href="/home" className="hover:text-amber-500 flex items-center gap-2">
+              <Home size={22} /> Home
             </Link>
-            <Link href="/login" className="hover:text-gold">
-              Login
+            <Link href="/menu" className="hover:text-amber-500 flex items-center gap-2">
+              <Utensils size={22} /> Menu
             </Link>
-            <Link href="/signup" className="hover:text-gold">
-              Sign Up
+            <Link href="/about" className="hover:text-amber-500 flex items-center gap-2">
+              <Info size={22} /> About
+            </Link>
+            <Link href="/contact" className="hover:text-amber-500 flex items-center gap-2">
+              <Mail size={22} /> Contact
             </Link>
           </ul>
         </div>
-      ) : (
-        <div>
-          <div className="bg-teal-700 w-100vw text-lightBlue flex justify-between font-extrabold py-4 px-8">
-            <Link href="/home" className="text-amber-500 text-4xl">
-            Khana | Indian Cuisine
-            </Link>
-            <ul className="flex gap-6 text-2xl flex-row items-center">
-              <Link href="/home" className="hover:text-amber-500">
-                Home
-              </Link>
-              <Link href="/menu" className="hover:text-amber-500">
-                Menu
-              </Link>
-              <Link href="/about" className="hover:text-amber-500">
-                About
-              </Link>
-              <Link href="/contact" className="hover:text-amber-500">
-                Contact
-              </Link>
-            </ul>
-          </div>
-        </div>
       )}
-    </div>
+    </nav>
   );
 }

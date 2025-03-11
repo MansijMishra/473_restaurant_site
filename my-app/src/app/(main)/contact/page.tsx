@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Page() {
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12 space-y-10">
+    <div className="min-h-screen max-w-4xl mx-auto px-6 py-12 space-y-10 mt-24">
       {/* Heading */}
       <h1 className="text-3xl font-bold text-primary text-center">Contact Us</h1>
 

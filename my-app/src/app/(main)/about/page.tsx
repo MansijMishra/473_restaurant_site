@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Page() {
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12 space-y-10 bg-teal-700 pt-24 mt-24">
+    <div className="min-h-screen max-w-4xl mx-auto px-6 py-12 space-y-10 bg-teal-700 pt-24 mt-40">
       {/* Hero Section */}
       <div className="relative w-full h-[300px] md:h-[400px] rounded-lg overflow-hidden">
         <Image

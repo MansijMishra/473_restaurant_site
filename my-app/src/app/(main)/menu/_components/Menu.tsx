@@ -121,7 +121,7 @@ export default function Menu() {
       ];
 
   return (
-    <div className="p-6 space-y-10">
+    <div className="p-6 space-y-10 mt-24">
       {/* Appetizers */}
       <section>
         <h2 className="text-2xl font-bold text-primary mb-4">Appetizers</h2>
