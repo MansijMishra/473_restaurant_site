@@ -1,26 +1,71 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+body {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 40 80% 89%; /* Light Cream #FFF5E4 */
+    --foreground: 240 10% 3.9%;
+    --card: 255 96% 89%; /* Light Cream #FFF5E4 */
+    --card-foreground: 240 10% 3.9%;
+    --popover: 255 96% 89%; /* Light Cream #FFF5E4 */
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 39 100% 50%; /* Orange #FFA725 */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 144 32% 80%; /* Soft Green #C1D8C3 */
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 144 32% 80%; /* Soft Green #C1D8C3 */
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 144 32% 80%; /* Soft Green #C1D8C3 */
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 146 21% 52%; /* Sage Green #6A9C89 */
+    --input: 146 21% 52%; /* Sage Green #6A9C89 */
+    --ring: 240 10% 3.9%;
+    --chart-1: 39 100% 50%; /* Orange #FFA725 */
+    --chart-2: 255 96% 89%; /* Light Cream #FFF5E4 */
+    --chart-3: 144 32% 80%; /* Soft Green #C1D8C3 */
+    --chart-4: 146 21% 52%; /* Sage Green #6A9C89 */
+    --radius: 0.5rem;
+  }
+  
+  .dark {
+    --background: 146 21% 30%; /* Dark Sage Green */
+    --foreground: 0 0% 98%;
+    --card: 146 21% 30%; /* Dark Sage Green */
+    --card-foreground: 0 0% 98%;
+    --popover: 146 21% 30%; /* Dark Sage Green */
+    --popover-foreground: 0 0% 98%;
+    --primary: 39 100% 50%; /* Orange #FFA725 */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 144 32% 60%; /* Deeper Soft Green */
+    --secondary-foreground: 0 0% 98%;
+    --muted: 144 32% 60%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 144 32% 60%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 146 21% 42%;
+    --input: 146 21% 42%;
+    --ring: 240 4.9% 83.9%;
+    --chart-1: 39 100% 50%; /* Orange */
+    --chart-2: 255 96% 89%; /* Light Cream */
+    --chart-3: 144 32% 80%; /* Soft Green */
+    --chart-4: 146 21% 52%; /* Sage Green */
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
