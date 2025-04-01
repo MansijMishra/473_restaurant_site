@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, Home, Utensils, Info, Mail } from "lucide-react";
+import { Menu, X, Home, Utensils, Info, Mail, ShoppingCart } from "lucide-react";
 
 export default function Navbar({ type }: { type: string }) {
   const [dropdown, setDropdown] = useState(false);
@@ -45,6 +45,9 @@ export default function Navbar({ type }: { type: string }) {
           <Link href="/contact" className="hover:text-amber-500 flex items-center gap-1">
             <Mail size={20} /> Contact
           </Link>
+          <Link href="/cart" className="hover:text-amber-500 flex items-center gap-1">
+            <ShoppingCart size={20} /> 
+          </Link>
         </ul>
 
         {/* Mobile Menu Button */}
@@ -74,6 +77,9 @@ export default function Navbar({ type }: { type: string }) {
             </Link>
             <Link href="/contact" className="hover:text-amber-500 flex items-center gap-2">
               <Mail size={22} /> Contact
+            </Link>
+            <Link href="/cart" className="hover:text-amber-500 flex items-center gap-2">
+              <ShoppingCart size={22} /> 
             </Link>
           </ul>
         </div>
