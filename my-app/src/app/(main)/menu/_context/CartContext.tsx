@@ -5,12 +5,14 @@ export interface CartItem {
   name: string;
   price: number;
   quantity: number;
+  image: string; // Add image property
 }
 
 interface CartContextType {
   cartItems: CartItem[];
   addToCart: (item: CartItem) => void;
   removeFromCart: (name: string) => void;
+  updateQuantity: (name: string, quantity: number) => void; // Add this new function
   clearCart: () => void;
 }
 
@@ -22,7 +24,6 @@ export const useCart = () => {
   return context;
 };
 
-// Optional: Add local storage to persist cart between page refreshes
 export function CartProvider({ children }: { children: ReactNode }) {
   // Initialize state from localStorage if available
   const [cartItems, setCartItems] = useState<CartItem[]>(() => {
@@ -71,9 +72,23 @@ export function CartProvider({ children }: { children: ReactNode }) {
     );
   };
 
+  // New function to directly update quantity
+  const updateQuantity = (name: string, quantity: number) => {
+    if (quantity <= 0) {
+      // Remove item completely if quantity is 0 or negative
+      setCartItems((prev) => prev.filter((item) => item.name !== name));
+    } else {
+      setCartItems((prev) =>
+        prev.map((item) => 
+          item.name === name ? { ...item, quantity } : item
+        )
+      );
+    }
+  };
+
   const clearCart = () => setCartItems([]);
 
-  const value = { cartItems, addToCart, removeFromCart, clearCart };
+  const value = { cartItems, addToCart, removeFromCart, updateQuantity, clearCart };
   console.log("Current cart context value:", value);
 
   return (
